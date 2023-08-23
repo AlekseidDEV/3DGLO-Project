@@ -22,15 +22,19 @@ const timer = (dedlain) => {
     const updateClock = () => {
         const {second, minute, hourse, day, timeRemain} = getTimeRemain()
 
-        
-        spanDay.textContent = day
-        spanHourse.textContent = hourse
-        spanMinute.textContent = minute
-        spanSecond.textContent = second
-        if(timeRemain === 0){
+        spanSecond.textContent = String(second).padStart(2, "0")
+        spanMinute.textContent = String(minute).padStart(2, "0")
+        spanHourse.textContent = String(hourse).padStart(2, "0")
+        spanDay.textContent = String(day).padStart(2, "0")
+
+        if(timeRemain <= 0){
+            spanDay.textContent = '00'
+            spanHourse.textContent = '00'
+            spanMinute.textContent = '00'
+            spanSecond.textContent = '00'
             clearInterval(idInterval)
         }
-        console.log(1);
+        console.log('1');
     }
 
 idInterval = setInterval(updateClock, 1000)
