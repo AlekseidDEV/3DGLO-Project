@@ -3,23 +3,31 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const btnPopupClose = modal.querySelector(".popup-close");
 
+  const closePositionModal = modal.getBoundingClientRect().left
+  let animateModal
+  let count = closePositionModal
+
   const openModalWindow = () => {
-    if (!modal.style.display) {
-      modal.style.display = "block";
-    } else {
-      modal.style.display = "";
-    }
+        animateModal = requestAnimationFrame(openModalWindow)   
+    count++
+        if(count <= 0){
+            modal.style.transform = `translate(${count * 15}px)` 
+        } else {
+            cancelAnimationFrame(animateModal)
+        }
   };
 
   popupBtn.forEach((button) => {
     button.addEventListener("click", openModalWindow);
   });
 
-  btnPopupClose.addEventListener("click", openModalWindow);
+  
 
-  modal.addEventListener("click", (e) => {
-    if (e.target.className === "popup") openModalWindow();
-  });
+//   btnPopupClose.addEventListener("click", openModalWindow);
+
+//   modal.addEventListener("click", (e) => {
+//     if (e.target.className === "popup") openModalWindow();
+//   });
 };
 
 export default modal;

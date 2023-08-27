@@ -683,7 +683,6 @@ footer .web {
   text-align: right;
 }
 .popup {
-  display: none;
   position: fixed;
   left: 0;
   top: 0;
@@ -692,6 +691,7 @@ footer .web {
   height: 100%;
   z-index: 9;
   background-color: rgba(0, 0, 0, 0.5);
+  transform: translateX(-100%);
 }
 .popup .main-form input {
   display: block;
