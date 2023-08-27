@@ -8,10 +8,11 @@ const modal = () => {
   let count = closePositionModal
 
   const openModalWindow = () => {
-        animateModal = requestAnimationFrame(openModalWindow)   
     count++
+        animateModal = requestAnimationFrame(openModalWindow)
+
         if(count <= 0){
-            modal.style.transform = `translate(${count * 15}px)` 
+            modal.style.transform = `translate(${count}px)` 
         } else {
             cancelAnimationFrame(animateModal)
         }
@@ -22,7 +23,6 @@ const modal = () => {
   });
 
   
-
 //   btnPopupClose.addEventListener("click", openModalWindow);
 
 //   modal.addEventListener("click", (e) => {
