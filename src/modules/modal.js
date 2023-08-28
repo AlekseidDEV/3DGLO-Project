@@ -16,20 +16,15 @@ const modal = () => {
       cancelAnimationFrame(animateModal);
       count = -100;
     }
-
   };
 
-    const closeModal = (e) => {
+  const closeModal = (e) => {
     if (e.target.className === "popup-close") {
       modal.style.transform = "translateX(-100%)";
     } else if (e.target.className === "popup") {
       modal.style.transform = "translateX(-100%)";
     }
   };
-
-  const minScreenAnim = () => {
-
-  }
 
   popupBtn.forEach((button) => {
     button.addEventListener("click", openModalWindow);
