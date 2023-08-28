@@ -691,7 +691,7 @@ footer .web {
   height: 100%;
   z-index: 9;
   background-color: rgba(0, 0, 0, 0.5);
-  transform: translateX(-100%);
+  transform: translate(-100%);
 }
 .popup .main-form input {
   display: block;
@@ -710,7 +710,7 @@ footer .web {
   left: 38%;
   top: 10%;
   -webkit-transform: translateX(-50px);
-  transform: translateX(-50px);
+  /* transform: translateX(-50px); */
   padding: 2rem 6rem;
   background-color: #24241f;
 }

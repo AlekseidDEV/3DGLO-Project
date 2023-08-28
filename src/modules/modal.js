@@ -3,16 +3,20 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const btnPopupClose = modal.querySelector(".popup-close");
 
-  const closePositionModal = modal.getBoundingClientRect().left
+  const stopScreenAnimate = modal.clientWidth
+  console.log(stopScreenAnimate);
+
   let animateModal
-  let count = closePositionModal
+  let count = -100
+ 
 
   const openModalWindow = () => {
     count++
         animateModal = requestAnimationFrame(openModalWindow)
 
-        if(count <= 0){
-            modal.style.transform = `translate(${count}px)` 
+        if(count <= 0 && stopScreenAnimate >= 768){
+            modal.style.transform = `translateX(${count * 15}px)` 
+            
         } else {
             cancelAnimationFrame(animateModal)
         }
@@ -22,8 +26,12 @@ const modal = () => {
     button.addEventListener("click", openModalWindow);
   });
 
+  const closeModal = () => {
+    console.log('закрытие');
+  }
+
   
-//   btnPopupClose.addEventListener("click", openModalWindow);
+  btnPopupClose.addEventListener("click", closeModal);
 
 //   modal.addEventListener("click", (e) => {
 //     if (e.target.className === "popup") openModalWindow();
