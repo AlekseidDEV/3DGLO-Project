@@ -10,8 +10,8 @@ const modal = () => {
     count++;
     animateModal = requestAnimationFrame(openModalWindow);
 
-    if (count <= 0) {
-      modal.style.transform = `translateX(${count * 25}px)`;
+    if (count <= 0 && innerWidth >= 768) {
+      modal.style.transform = `translateX(${count * 15}px)`;
     } else {
       cancelAnimationFrame(animateModal);
       count = -100;
@@ -19,17 +19,21 @@ const modal = () => {
 
   };
 
-  popupBtn.forEach((button) => {
-    button.addEventListener("click", openModalWindow);
-  });
-
-  const closeModal = (e) => {
+    const closeModal = (e) => {
     if (e.target.className === "popup-close") {
       modal.style.transform = "translateX(-100%)";
     } else if (e.target.className === "popup") {
       modal.style.transform = "translateX(-100%)";
     }
   };
+
+  const minScreenAnim = () => {
+
+  }
+
+  popupBtn.forEach((button) => {
+    button.addEventListener("click", openModalWindow);
+  });
 
   btnPopupClose.addEventListener("click", closeModal);
 
