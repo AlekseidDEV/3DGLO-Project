@@ -3,23 +3,20 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const btnPopupClose = modal.querySelector(".popup-close");
 
-  const stopScreenAnimate = modal.clientWidth
-  console.log(stopScreenAnimate);
+  const stopScreenAnimate = modal.clientWidth;
 
-  let animateModal
-  let count = -100
- 
+  let animateModal;
+  let count = -100;
 
   const openModalWindow = () => {
-    count++
-        animateModal = requestAnimationFrame(openModalWindow)
+    count++;
+    animateModal = requestAnimationFrame(openModalWindow);
 
-        if(count <= 0 && stopScreenAnimate >= 768){
-            modal.style.transform = `translateX(${count * 15}px)` 
-            
-        } else {
-            cancelAnimationFrame(animateModal)
-        }
+    if (count <= 0) {
+      modal.style.transform = `translateX(${count * 15}px)`;
+    } else {
+      cancelAnimationFrame(animateModal);
+    }
   };
 
   popupBtn.forEach((button) => {
@@ -27,15 +24,14 @@ const modal = () => {
   });
 
   const closeModal = () => {
-    console.log('закрытие');
-  }
+    console.log("закрытие");
+  };
 
-  
   btnPopupClose.addEventListener("click", closeModal);
 
-//   modal.addEventListener("click", (e) => {
-//     if (e.target.className === "popup") openModalWindow();
-//   });
+  //   modal.addEventListener("click", (e) => {
+  //     if (e.target.className === "popup") openModalWindow();
+  //   });
 };
 
 export default modal;
