@@ -3,8 +3,6 @@ const modal = () => {
   const modal = document.querySelector(".popup");
   const btnPopupClose = modal.querySelector(".popup-close");
 
-  const stopScreenAnimate = modal.clientWidth;
-
   let animateModal;
   let count = -100;
 
@@ -13,25 +11,29 @@ const modal = () => {
     animateModal = requestAnimationFrame(openModalWindow);
 
     if (count <= 0) {
-      modal.style.transform = `translateX(${count * 15}px)`;
+      modal.style.transform = `translateX(${count * 25}px)`;
     } else {
       cancelAnimationFrame(animateModal);
+      count = -100;
     }
+
   };
 
   popupBtn.forEach((button) => {
     button.addEventListener("click", openModalWindow);
   });
 
-  const closeModal = () => {
-    console.log("закрытие");
+  const closeModal = (e) => {
+    if (e.target.className === "popup-close") {
+      modal.style.transform = "translateX(-100%)";
+    } else if (e.target.className === "popup") {
+      modal.style.transform = "translateX(-100%)";
+    }
   };
 
   btnPopupClose.addEventListener("click", closeModal);
 
-  //   modal.addEventListener("click", (e) => {
-  //     if (e.target.className === "popup") openModalWindow();
-  //   });
+  modal.addEventListener("click", closeModal);
 };
 
 export default modal;
