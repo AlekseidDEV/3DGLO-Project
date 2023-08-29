@@ -1,33 +1,33 @@
 const modal = () => {
-  const popupBtn = document.querySelectorAll(".popup-btn");
   const modal = document.querySelector(".popup");
-  const btnPopupClose = modal.querySelector(".popup-close");
+  const modalContent = document.querySelector('.popup-content')
 
-  const closePositionModal = modal.getBoundingClientRect().left
-  let animateModal
-  let count = closePositionModal
+  let animateModal;
+  let count = -50;
 
   const openModalWindow = () => {
-    count++
-        animateModal = requestAnimationFrame(openModalWindow)
+      count++;
+      animateModal = requestAnimationFrame(openModalWindow);
 
-        if(count <= 0){
-            modal.style.transform = `translate(${count}px)` 
-        } else {
-            cancelAnimationFrame(animateModal)
-        }
+      if (count <= 0 && innerWidth >= 768) {
+          modal.style.transform = `translateX(${count * 2}%)`;
+      } else {
+          cancelAnimationFrame(animateModal);
+          count = -100;
+      }
   };
 
-  popupBtn.forEach((button) => {
-    button.addEventListener("click", openModalWindow);
-  });
+  const closeModal = () => {
+      modal.style.transform = "translateX(-100%)";
+  };
 
-  
-//   btnPopupClose.addEventListener("click", openModalWindow);
+  document.body.addEventListener('click', (e) => {
+      if(e.target.classList[2] === "popup-btn") openModalWindow()
+  })
 
-//   modal.addEventListener("click", (e) => {
-//     if (e.target.className === "popup") openModalWindow();
-//   });
+  modal.addEventListener('click', (e) => {
+      if(e.target.className === 'popup-close' || e.target.className === 'popup') closeModal()
+  })
 };
 
 export default modal;
