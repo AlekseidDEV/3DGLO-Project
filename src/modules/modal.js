@@ -1,33 +1,34 @@
 const modal = () => {
   const modal = document.querySelector(".popup");
-  const modalContent = document.querySelector('.popup-content')
+  const modalContent = document.querySelector(".popup-content");
 
   let animateModal;
   let count = -50;
 
   const openModalWindow = () => {
-      count++;
-      animateModal = requestAnimationFrame(openModalWindow);
+    count++;
+    animateModal = requestAnimationFrame(openModalWindow);
 
-      if (count <= 0 && innerWidth >= 768) {
-          modal.style.transform = `translateX(${count * 2}%)`;
-      } else {
-          cancelAnimationFrame(animateModal);
-          count = -100;
-      }
+    if (count <= 0 && innerWidth >= 768) {
+      modal.style.transform = `translateX(${count * 2}%)`;
+    } else {
+      cancelAnimationFrame(animateModal);
+      count = -100;
+    }
   };
 
   const closeModal = () => {
-      modal.style.transform = "translateX(-100%)";
+    modal.style.transform = "translateX(-100%)";
   };
 
-  document.body.addEventListener('click', (e) => {
-      if(e.target.classList[2] === "popup-btn") openModalWindow()
-  })
+  document.body.addEventListener("click", (e) => {
+    if (e.target.classList[2] === "popup-btn") openModalWindow();
+  });
 
-  modal.addEventListener('click', (e) => {
-      if(e.target.className === 'popup-close' || e.target.className === 'popup') closeModal()
-  })
+  modal.addEventListener("click", (e) => {
+    if (e.target.className === "popup-close" || e.target.className === "popup")
+      closeModal();
+  });
 };
 
 export default modal;

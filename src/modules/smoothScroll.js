@@ -11,7 +11,7 @@ const smoothScroll = () => {
   };
 
   const smoothLink = (identificator) => {
-    const idBlock = identificator.slice(1)
+    const idBlock = identificator.slice(1);
     document.getElementById(idBlock).scrollIntoView({
       behavior: "smooth",
       block: "start",
@@ -20,10 +20,10 @@ const smoothScroll = () => {
 
   btnScroll.addEventListener("click", hendlerScroll);
 
-  menu.addEventListener('click', (e) => {
-    e.preventDefault()
-    if(e.target.className === '') smoothLink(e.target.hash)
-  })
+  menu.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (e.target.className === "") smoothLink(e.target.hash);
+  });
 };
 
 export default smoothScroll;
