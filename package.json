@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build" : "webpack",
-    "watch" : "webpack --watch"
+    "watch" : "webpack --watch",
+    "eslint" : "eslint"
   },
   "author": "Aleks",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "eslint": "^7.1.0"
   }
 }
