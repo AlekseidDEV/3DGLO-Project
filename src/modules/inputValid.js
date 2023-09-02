@@ -14,7 +14,7 @@ const inputValid = () => {
     } else if (userInfoInput === "user_phone") {
       e.target.value = e.target.value.replace(/[^-0-9()]/g, "");
     } else if (calcInput === "calc-item") {
-      e.target.value = e.target.value.replace(/^\D/g, "");
+      e.target.value = e.target.value.replace(/\D/g, "");
     }
   };
 
