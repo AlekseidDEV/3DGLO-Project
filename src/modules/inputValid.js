@@ -13,17 +13,13 @@ const inputValid = () => {
   inputs.forEach((elem) => {
     elem.addEventListener("blur", (e) => {
       if (e.target.name === "user_name") {
-        e.target.value = getRegExp(e.target.value).upperCase.replace(
-          /([^а-яА-Я\s-]+)/g, "");
+        e.target.value = getRegExp(e.target.value).upperCase.replace(/([^а-яА-Я\s-]+)/g, "");
       } else if (e.target.name === "user_message") {
-        e.target.value = getRegExp(e.target.value).trim.replace(
-          /[^-а-яА-Я0-9.,!?\s-]+/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(/[^-а-яА-Я0-9.,!?\s-]+/g, "");
       } else if (e.target.name === "user_phone") {
-        e.target.value = getRegExp(e.target.value).trim.replace(
-          /[^-0-9()]/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(/[^-0-9()]/g, "");
       } else if (e.target.name === "user_email") {
-        e.target.value = getRegExp(e.target.value).trim.replace(
-          /[^-a-zA-Z0-9@_.!~*']/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(/[^-a-zA-Z0-9@_.!~*']/g, "");
       } else if (e.target.classList[0] === "calc-item") {
         e.target.value = getRegExp(e.target.value).trim.replace(/\D+/g, "");
       }
