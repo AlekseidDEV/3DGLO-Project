@@ -1,9 +1,8 @@
 const modal = () => {
     const modal = document.querySelector(".popup");
-    const modalContent = document.querySelector('.popup-content')
 
     let animateModal;
-    let count = -50;
+    let count = -2;
 
     const openModalWindow = () => {
         count++;
@@ -13,7 +12,7 @@ const modal = () => {
             modal.style.transform = `translateX(${count * 2}%)`;
         } else {
             cancelAnimationFrame(animateModal);
-            count = -100;
+            count = -2;
         }
     };
 
@@ -21,12 +20,12 @@ const modal = () => {
         modal.style.transform = "translateX(-100%)";
     };
 
-    document.body.addEventListener('click', (e) => {
-        if(e.target.classList[2] === "popup-btn") openModalWindow()
-    })
-
-    modal.addEventListener('click', (e) => {
-        if(e.target.className === 'popup-close' || e.target.className === 'popup') closeModal()
+    document.addEventListener('click', () => {
+        if(e.target.classList[2] === "popup-btn"){
+            openModalWindow()
+        } else if(e.target.className === 'popup-close' || e.target.className === 'popup'){
+            closeModal()
+        }
     })
 };
 
