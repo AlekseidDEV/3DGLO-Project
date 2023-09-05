@@ -705,12 +705,11 @@ footer .web {
 }
 .popup .popup-content {
   position: fixed;
-  text-align: center;
-  width: 40rem;
-  left: 38%;
-  top: 10%;
-  -webkit-transform: translateX(-50px);
-  transform: translateX(-50px);
+  width: 400px;
+  height: 382px;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
   padding: 2rem 6rem;
   background-color: #24241f;
 }
