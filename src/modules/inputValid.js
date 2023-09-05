@@ -1,44 +1,33 @@
 const inputValid = () => {
   const inputs = document.querySelectorAll("input");
-  const select = document.querySelector(".calc-item.calc-type");
-  const inputSquare = document.querySelector(".calc-item.calc-square");
-  const inputCalc = document.querySelector(".calc-item.calc-count");
-  const inputCalcDay = document.querySelector(".calc-item.calc-day");
 
+  const getRegExp = (value) => {
+    const treatment = value.replace(/((^[ \s-]+|[ \s-]+$))/g, "");
+    const trim = treatment.replace(/[ ]+/g, " ");
+    const upperCase = trim.replace(/( |^)[а-я]/g, (x) => {
+      return x.toUpperCase();
+    });
+
+    return { treatment, trim, upperCase };
+  };
   inputs.forEach((elem) => {
-    elem.addEventListener("blur", (e, treatment, trim, upperCase) => {
-      treatment = e.target.value.replace(/((^[ \s-]+|[ \s-]+$))/g, "");
-      trim = treatment.replace(/[ ]+/g, " ");
-      upperCase = trim.replace(/( |^)[а-я]/g, (x) => {
-        return x.toUpperCase();
-      });
-
+    elem.addEventListener("blur", (e) => {
       if (e.target.name === "user_name") {
-        e.target.value = upperCase.replace(/([^а-яА-Я\s-]+)/g, "");
+        e.target.value = getRegExp(e.target.value).upperCase.replace(
+          /([^а-яА-Я\s-]+)/g, "");
       } else if (e.target.name === "user_message") {
-        e.target.value = trim.replace(/[^а-яА-Я\s-]+/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(
+          /[^-а-яА-Я0-9.,!?\s-]+/g, "");
       } else if (e.target.name === "user_phone") {
-        e.target.value = trim.replace(/[^-0-9()]/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(
+          /[^-0-9()]/g, "");
       } else if (e.target.name === "user_email") {
-        e.target.value = trim.replace(/[^-a-zA-Z@_.!~*']/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(
+          /[^-a-zA-Z0-9@_.!~*']/g, "");
       } else if (e.target.classList[0] === "calc-item") {
-        e.target.value = trim.replace(/\D+/g, "");
+        e.target.value = getRegExp(e.target.value).trim.replace(/\D+/g, "");
       }
     });
-  });
-
-  const cleanInput = (value) => {
-    if (value === "1" || value === "2" || value === "3") {
-      inputSquare.value = "";
-      inputCalc.value = "";
-      inputCalcDay.value = "";
-    }
-  };
-
-  select.addEventListener("change", (e) => {
-    if (e.target.nodeName === "SELECT") {
-      cleanInput(e.target.value);
-    }
   });
 };
 
