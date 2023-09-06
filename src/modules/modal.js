@@ -20,7 +20,7 @@ const modal = () => {
         modal.style.transform = "translateX(-100%)";
     };
 
-    document.addEventListener('click', () => {
+    document.addEventListener('click', (e) => {
         if(e.target.classList[2] === "popup-btn"){
             openModalWindow()
         } else if(e.target.className === 'popup-close' || e.target.className === 'popup'){
