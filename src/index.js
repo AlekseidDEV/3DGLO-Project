@@ -1,6 +1,7 @@
 import inputValid from "./modules/inputValid"
 import menu from "./modules/menu"
 import modal from "./modules/modal"
+import slider from "./modules/slider"
 import smoothScroll from "./modules/smoothScroll"
 import timer from "./modules/timer"
 
@@ -9,3 +10,4 @@ menu()
 modal()
 inputValid()
 smoothScroll()
+slider()
