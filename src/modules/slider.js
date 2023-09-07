@@ -1,20 +1,12 @@
-const slider = () => {
-  const sliderBlock = document.querySelector(".portfolio-content");
-  const slides = document.querySelectorAll(".portfolio-item");
+const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive = "dot-active") => {
+  const sliderBlock = document.querySelector(slider);
+  const slides = document.querySelectorAll(slide);
 
   const timeInterval = 3000;
 
   let currentSlide = 0;
   let interval;
   let arrDots;
-
-  const prevSlide = (elems, index, strClass) => {
-    elems[index].classList.remove(strClass);
-  };
-
-  const nextSlide = (elems, index, strClass) => {
-    elems[index].classList.add(strClass);
-  };
 
   const addDots = () => {
     const dotsBlock = document.querySelector(".portfolio-dots");
@@ -34,19 +26,36 @@ const slider = () => {
     });
   };
 
+  const prevSlide = (elems, index, strClass) => {
+    elems[index].classList.remove(strClass);
+  };
+
+  const nextSlide = (elems, index, strClass) => {
+    elems[index].classList.add(strClass);
+  };
+
   const autoSlide = () => {
-    prevSlide(slides, currentSlide, "portfolio-item-active");
-    prevSlide(arrDots, currentSlide, "dot-active");
+    prevSlide(slides, currentSlide, slideActive);
+    prevSlide(arrDots, currentSlide, dotsActive);
+
     currentSlide++;
+
     if (currentSlide >= slides.length) {
       currentSlide = 0;
     }
-    nextSlide(slides, currentSlide, "portfolio-item-active");
-    nextSlide(arrDots, currentSlide, "dot-active");
+
+    nextSlide(slides, currentSlide, slideActive);
+    nextSlide(arrDots, currentSlide, dotsActive);
   };
 
-  const startSlide = (timer = 2000) => {
-    interval = setInterval(autoSlide, timer);
+  const startSlide = () => {
+    if (
+      document.querySelector(slider, slide) !== null
+    ) {
+      interval = setInterval(autoSlide, timeInterval);
+    } else {
+      return;
+    }
   };
 
   const stopSlide = () => {
@@ -107,7 +116,7 @@ const slider = () => {
   );
 
   addDots();
-  startSlide(timeInterval);
+  startSlide();
 };
 
 export default slider;
