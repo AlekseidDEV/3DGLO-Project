@@ -1,4 +1,4 @@
-const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive = "dot-active") => {
+const slider = (slider, slide, slideActive = "portfolio-item-active", dotClassActive = "dot-active", dotClass = 'dot') => {
   const sliderBlock = document.querySelector(slider);
   const slides = document.querySelectorAll(slide);
 
@@ -15,13 +15,13 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
       const newDot = document.createElement("li");
       dotsBlock.append(newDot);
     }
-    arrDots = Array.from(dotsBlock.querySelectorAll("li"));
+    arrDots = dotsBlock.querySelectorAll("li")
 
     arrDots.forEach((dot, index) => {
       if (index === 0) {
-        dot.classList.add("dot", "dot-active");
+        dot.classList.add(dotClass, dotClassActive);
       } else {
-        dot.classList.add("dot");
+        dot.classList.add(dotClass);
       }
     });
   };
@@ -36,7 +36,7 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
 
   const autoSlide = () => {
     prevSlide(slides, currentSlide, slideActive);
-    prevSlide(arrDots, currentSlide, dotsActive);
+    prevSlide(arrDots, currentSlide, dotClassActive);
 
     currentSlide++;
 
@@ -45,7 +45,7 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
     }
 
     nextSlide(slides, currentSlide, slideActive);
-    nextSlide(arrDots, currentSlide, dotsActive);
+    nextSlide(arrDots, currentSlide, dotClassActive);
   };
 
   const startSlide = () => {
@@ -68,14 +68,14 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
     if (!e.target.matches(".dot , .portfolio-btn")) {
       return;
     }
-    prevSlide(slides, currentSlide, "portfolio-item-active");
-    prevSlide(arrDots, currentSlide, "dot-active");
+    prevSlide(slides, currentSlide, slideActive);
+    prevSlide(arrDots, currentSlide, dotClassActive);
 
     if (e.target.matches("#arrow-right")) {
       currentSlide++;
     } else if (e.target.matches("#arrow-left")) {
       currentSlide--;
-    } else if (e.target.classList.contains("dot")) {
+    } else if (e.target.classList.contains(dotClass)) {
       arrDots.forEach((dot, index) => {
         if (e.target === dot) {
           currentSlide = index;
@@ -91,8 +91,8 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
       currentSlide = slides.length - 1;
     }
 
-    nextSlide(slides, currentSlide, "portfolio-item-active");
-    nextSlide(arrDots, currentSlide, "dot-active");
+    nextSlide(slides, currentSlide, slideActive);
+    nextSlide(arrDots, currentSlide, dotClassActive);
   };
 
   sliderBlock.addEventListener("click", switchSlider);
@@ -114,8 +114,8 @@ const slider = (slider, slide, slideActive = "portfolio-item-active", dotsActive
     },
     true
   );
-
-  addDots();
+  
+  addDots()
   startSlide();
 };
 
