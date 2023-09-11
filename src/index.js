@@ -1,3 +1,4 @@
+import calc from "./modules/calc"
 import inputValid from "./modules/inputValid"
 import menu from "./modules/menu"
 import modal from "./modules/modal"
@@ -13,3 +14,4 @@ inputValid()
 smoothScroll()
 tabs()
 slider(".portfolio-content", ".portfolio-item", "portfolio-item-active", "dot-active", "dot")
+calc(890)
