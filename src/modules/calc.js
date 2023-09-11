@@ -6,6 +6,26 @@ const calc = (price = 100) => {
   const calcCday = document.querySelector(".calc-day");
   const totulSum = document.getElementById("total");
 
+  let calcAnimate
+  let speed = 200
+  let startCount = 0
+
+  const getNum = (num) => {
+    const totalSum = num
+
+    const animateCountSum = () => {
+      calcAnimate = requestAnimationFrame(animateCountSum)
+      startCount += speed
+      totulSum.textContent = startCount
+      if(startCount >= totalSum){
+        totulSum.textContent = Math.floor(totalSum)
+        cancelAnimationFrame(calcAnimate)
+      }
+    }
+
+    animateCountSum()
+  }
+
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
     const calcSquareValue = +calcSquare.value;
@@ -32,11 +52,11 @@ const calc = (price = 100) => {
         calcSquareValue *
         calcCcountValue *
         calcCdayValue;
+
+        getNum(totalValue)
     } else {
       totalValue = 0;
-    }
-
-    totulSum.textContent = totalValue;
+    } 
   };
 
   calcBlock.addEventListener("change", countCalc);
