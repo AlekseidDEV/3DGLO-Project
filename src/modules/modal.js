@@ -2,7 +2,7 @@ const modal = () => {
     const modal = document.querySelector(".popup");
 
     let animateModal;
-    let count = -2;
+    let count = -50;
 
     const openModalWindow = () => {
         count++;
@@ -12,7 +12,7 @@ const modal = () => {
             modal.style.transform = `translateX(${count * 2}%)`;
         } else {
             cancelAnimationFrame(animateModal);
-            count = -2;
+            count = -50;
         }
     };
 
