@@ -16,6 +16,7 @@ const tabs = () => {
       });
     }
   };
+  
 
   tabPanel.addEventListener("click", swithTab);
 };
