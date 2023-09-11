@@ -1,11 +1,11 @@
 const tabs = () => {
   const tabContent = document.querySelectorAll(".service-tab");
   const tabPanel = document.querySelector(".service-header");
-  const tabBtn = document.querySelectorAll(".service-header-tab");
+  const tabsBtn = document.querySelectorAll(".service-header-tab");
 
   const swithTab = (e) => {
     if (e.target.closest(".service-header-tab")) {
-      tabBtn.forEach((tab, index) => {
+      tabsBtn.forEach((tab, index) => {
         if (tab === e.target.closest(".service-header-tab")) {
           tab.classList.add("active");
           tabContent[index].classList.remove("d-none");
