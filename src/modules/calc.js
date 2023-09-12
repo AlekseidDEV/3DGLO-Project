@@ -1,3 +1,4 @@
+import { animate } from "./helper";
 const calc = (price = 100) => {
   const calcBlock = document.querySelector(".calc-block");
   const calcType = document.querySelector(".calc-type");
@@ -6,24 +7,11 @@ const calc = (price = 100) => {
   const calcCday = document.querySelector(".calc-day");
   const totulSum = document.getElementById("total");
 
-  let calcAnimate;
-  let speed = 200;
-  let startCount = 0;
-  let totalValue = 0;
-
-  const animateCountSum = () => {
-    calcAnimate = requestAnimationFrame(animateCountSum);
-    startCount += speed;
-    totulSum.textContent = startCount;
-    if (startCount >= totalValue) {
-      totulSum.textContent = Math.floor(totalValue);
-      cancelAnimationFrame(calcAnimate);
-    }
-  };
-
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
     const calcSquareValue = +calcSquare.value;
+
+    let totalValue = 0;
 
     let calcCcountValue = 1;
     let calcCdayValue = 1;
@@ -46,7 +34,15 @@ const calc = (price = 100) => {
         calcCcountValue *
         calcCdayValue;
 
-      animateCountSum();
+        animate({
+          duration: 300, 
+          timing(timeFraction){
+            return timeFraction
+          },
+          draw(progress){
+            totulSum.textContent = Math.floor(progress * totalValue)
+          }
+        })
     } else {
       totalValue = 0;
     }

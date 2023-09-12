@@ -1,32 +1,34 @@
+import { animate } from "./helper";
+
 const modal = () => {
-    const modal = document.querySelector(".popup");
+  const modal = document.querySelector(".popup");
 
-    let animateModal;
-    let count = -50;
-
-    const openModalWindow = () => {
-        count++;
-        animateModal = requestAnimationFrame(openModalWindow);
-
-        if (count <= 0 && innerWidth >= 768) {
-            modal.style.transform = `translateX(${count * 2}%)`;
-        } else {
-            cancelAnimationFrame(animateModal);
-            count = -50;
-        }
-    };
-
-    const closeModal = () => {
-        modal.style.transform = "translateX(-100%)";
-    };
-
-    document.addEventListener('click', (e) => {
-        if(e.target.classList[2] === "popup-btn"){
-            openModalWindow()
-        } else if(e.target.className === 'popup-close' || e.target.className === 'popup'){
-            closeModal()
-        }
-    })
+  document.addEventListener("click", (e) => {
+    if (e.target.classList[2] === "popup-btn") {
+      animate({
+        duration: 400,
+        timing(timeFraction) {
+          return timeFraction;
+        },
+        draw(progress) {
+          modal.style.transform = `translateX(${100 * progress - 100}%)`;
+        },
+      });
+    } else if (
+      e.target.className === "popup-close" ||
+      e.target.className === "popup"
+    ) {
+      animate({
+        duration: 300,
+        timing(timeFraction) {
+            return timeFraction
+        },
+        draw(progress) {
+          modal.style.transform = `translateX(${100 * progress}%)`;
+        },
+      });
+    }
+  });
 };
 
 export default modal;
