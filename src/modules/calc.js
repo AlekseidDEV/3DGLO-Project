@@ -6,25 +6,20 @@ const calc = (price = 100) => {
   const calcCday = document.querySelector(".calc-day");
   const totulSum = document.getElementById("total");
 
-  let calcAnimate
-  let speed = 200
-  let startCount = 0
+  let calcAnimate;
+  let speed = 200;
+  let startCount = 0;
+  let totalValue = 0;
 
-  const getNum = (num) => {
-    const totalSum = num
-
-    const animateCountSum = () => {
-      calcAnimate = requestAnimationFrame(animateCountSum)
-      startCount += speed
-      totulSum.textContent = startCount
-      if(startCount >= totalSum){
-        totulSum.textContent = Math.floor(totalSum)
-        cancelAnimationFrame(calcAnimate)
-      }
+  const animateCountSum = () => {
+    calcAnimate = requestAnimationFrame(animateCountSum);
+    startCount += speed;
+    totulSum.textContent = startCount;
+    if (startCount >= totalValue) {
+      totulSum.textContent = Math.floor(totalValue);
+      cancelAnimationFrame(calcAnimate);
     }
-
-    animateCountSum()
-  }
+  };
 
   const countCalc = () => {
     const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
@@ -32,8 +27,6 @@ const calc = (price = 100) => {
 
     let calcCcountValue = 1;
     let calcCdayValue = 1;
-
-    let totalValue = 0;
 
     if (calcCcount.value > 1) {
       calcCcountValue += calcCcount.value / 10;
@@ -53,10 +46,10 @@ const calc = (price = 100) => {
         calcCcountValue *
         calcCdayValue;
 
-        getNum(totalValue)
+      animateCountSum();
     } else {
       totalValue = 0;
-    } 
+    }
   };
 
   calcBlock.addEventListener("change", countCalc);
