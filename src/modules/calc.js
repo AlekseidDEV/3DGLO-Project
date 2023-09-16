@@ -41,7 +41,7 @@ const calc = (price = 100) => {
           },
           draw(progress){
             totulSum.textContent = Math.floor(progress * totalValue)
-          }
+          } 
         })
     } else {
       totalValue = 0;
