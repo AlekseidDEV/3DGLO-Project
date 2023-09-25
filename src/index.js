@@ -8,6 +8,8 @@ import smoothScroll from "./modules/smoothScroll"
 import tabs from "./modules/tabs"
 import timer from "./modules/timer"
 
+
+
 timer("28 September 2023 21:55:00")
 menu()
 modal()
