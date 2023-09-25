@@ -84,10 +84,7 @@ const inputValid = () => {
     const firstDoubleNumb = val.match(/\b(\d{2})$/)
 
     console.log(codeSity);
-
-    // console.log(e.target.selectionStart);
     
-
     const maskOption = {
         keydel(){
           if(val.length <= 2) e.target.value = '+7 ('
