@@ -17,7 +17,6 @@ const sendForm = ({ formId, someElem }) => {
 
     const validate = inputs => {
         let succes = true;
-
         inputs.forEach(input => {
             if (input.value === "") {
                 succes = false;
@@ -29,8 +28,12 @@ const sendForm = ({ formId, someElem }) => {
 
     const dataPreporation = () => {
         const formElements = formBlock.querySelectorAll("input");
-
+        const popupContent = document.querySelector('.popup-content')
+        
         preloader.innerHTML = downloadRequest;
+        preloader.style.marginTop = '20px'
+        preloader.style.marginBottom = '20px'
+        popupContent.style.height = '450px'
 
         const formData = new FormData(formBlock);
         const formBody = {};
@@ -56,6 +59,7 @@ const sendForm = ({ formId, someElem }) => {
                     preloader.style.zIndex = '1';
                     setTimeout(() => {
                         formBlock.removeChild(preloader);
+                        popupContent.style.height = '382px'
                     }, 3000);
                 })
                 .then(() => {
