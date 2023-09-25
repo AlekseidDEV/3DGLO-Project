@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "clear": "rd /s /q dist",
-    "eslint": "eslint"
+    "clear": "rd /s /q dist"
   },
   "author": "Aleks",
   "license": "ISC",

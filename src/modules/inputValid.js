@@ -77,27 +77,35 @@ const inputValid = () => {
   }
 
   const maskPhone = (e) => {
-    const val = e.target.value
+    let val = e.target.value.replace(/[^-_+0-9()\s]/g, '')
+    let codeRegion = val.match(/^\+7\s/)
+    const codeSity = val.match(/\b(\d{3})+$/)
+    const firstFreeNumber = val.match(/\)\s?\b(\d{3})$/)
+    const firstDoubleNumb = val.match(/\b(\d{2})$/)
+
+    console.log(codeSity);
+
+    // console.log(e.target.selectionStart);
+    
 
     const maskOption = {
-      keyup(){
-       if(val.length === 7){
-        e.target.value = val + ')'
-       } else if(val.length === 11){
-        e.target.value = val + '-'
-       } else if(val.length === 14){
-        e.target.value = val + '-'
-       }else if(val.length === 17){
-        e.target.value = val
-       }
-      },
+        keydel(){
+          if(val.length <= 2) e.target.value = '+7 ('
+        }, 
 
-      keydel(){
-        if(val.length <= 4) e.target.value = '+7 ('
-      }
+        keyup(){
+          if(codeSity && (codeSity.index === 3 ||codeSity.index === 4)) e.target.value = codeRegion + "(" +codeSity[1] + ")"
+          if(firstFreeNumber && val.length >= 11){
+            e.target.value = val.slice(0, 8) + ' ' + firstFreeNumber[1] + '-'
+            
+          }
+          if(firstDoubleNumb && firstDoubleNumb.index === 13) {
+            e.target.value = val.slice(0, 13) + firstDoubleNumb[0] + '-'
+          }
+        }
     }
-
-    if(e.inputType === 'deleteContentBackward'){
+  
+    if(e.key === 'Backspace'){
       maskOption.keydel()
     } else{
       maskOption.keyup()
@@ -124,9 +132,9 @@ const inputValid = () => {
 
   inputPhone.forEach((input) => {
     input.addEventListener('click', () => {
-      input.value = '+7 ('
+      input.value = '+7 '
     }, {once : true})
-    input.addEventListener('input', maskPhone)
+    input.addEventListener('keydown', maskPhone)
   })
 };
 
