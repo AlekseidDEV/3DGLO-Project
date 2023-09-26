@@ -6,8 +6,7 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack --watch",
-    "clear": "rd /s /q dist",
-    "email": "node mailer.js"
+    "clear": "rd /s /q dist"
   },
   "author": "Aleks",
   "license": "ISC",
